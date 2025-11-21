@@ -80,26 +80,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
   return (
     <div className="bg-white">
-      {/* 1. Hero Section - Sliding Product */}
-      <section className="relative h-[600px] sm:h-[750px] overflow-hidden flex items-center bg-gray-50">
+      {/* 1. Hero Section - Sliding Product (Mobile Responsive Fixed) */}
+      <section className="relative min-h-[850px] lg:min-h-0 lg:h-[750px] overflow-hidden flex items-center bg-gray-50 py-16 lg:py-0">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50" />
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-[0.03]"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-blue-200/30 rounded-full blur-[100px]" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-left space-y-6 animate-fade-in-up">
-              <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold tracking-wider text-sm border border-blue-200">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            
+            {/* Text Content - Order 2 on mobile, Order 1 on desktop */}
+            <div className="text-center lg:text-left space-y-6 animate-fade-in-up order-2 lg:order-1">
+              <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold tracking-wider text-xs sm:text-sm border border-blue-200">
                 NEW RELEASE
               </span>
-              <h1 className="text-5xl sm:text-7xl font-extrabold text-gray-900 leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
                 {heroProducts[currentHero]?.name}
               </h1>
-              <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 {heroProducts[currentHero]?.description}
               </p>
-              <div className="flex gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                 <button onClick={() => onNavigate('shop')} className="px-8 py-4 bg-gray-900 hover:bg-blue-600 text-white font-bold rounded-lg shadow-lg transition-all transform hover:scale-105">
                   Shop Now
                 </button>
@@ -109,11 +111,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
             
-            <div className="relative h-[400px] lg:h-[600px] flex items-center justify-center">
+            {/* Image Carousel - Order 1 on mobile, Order 2 on desktop */}
+            <div className="relative h-[350px] sm:h-[450px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2 w-full">
               {heroProducts.map((prod, idx) => (
                 <div 
                   key={prod.id}
-                  className={`absolute transition-all duration-1000 ease-in-out transform ${
+                  className={`absolute transition-all duration-1000 ease-in-out transform w-full flex justify-center ${
                     idx === currentHero 
                       ? 'opacity-100 translate-x-0 scale-100' 
                       : 'opacity-0 translate-x-full scale-75'
@@ -122,7 +125,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <img 
                     src={prod.image} 
                     alt={prod.name}
-                    className="max-w-[300px] sm:max-w-[450px] drop-shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-3xl object-cover" 
+                    className="w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[450px] lg:h-[450px] drop-shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-3xl object-cover" 
                   />
                 </div>
               ))}
