@@ -39,49 +39,49 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
         onNavigate(page);
         setIsMenuOpen(false);
       }}
-      className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+      className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-5 py-2.5 rounded-full text-base font-bold transition-all duration-300 shadow-sm hover:shadow-md border border-transparent hover:border-blue-100"
     >
       {label}
     </button>
   );
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Left Side - Logo */}
-          <div className="flex-shrink-0 flex items-center cursor-pointer gap-2" onClick={() => onNavigate('home')}>
-             <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-blue-500/30 shadow-lg">
-               <span className="text-white font-bold text-xl">C</span>
+          <div className="flex-shrink-0 flex items-center cursor-pointer gap-3 group" onClick={() => onNavigate('home')}>
+             <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-blue-500/30 shadow-lg transform group-hover:rotate-3 transition-transform duration-300">
+               <span className="text-white font-black text-2xl">C</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900 tracking-tight">
+            <span className="text-3xl font-extrabold text-gray-900 tracking-tighter">
               CHRONOS
             </span>
           </div>
           
           {/* Center - Navigation (Desktop) */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-3">
             <NavLink page="home" label="Home" />
             <NavLink page="shop" label="Shop" />
             
             {/* Categories Dropdown */}
             <div className="relative group">
               <button 
-                className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1"
+                className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-5 py-2.5 rounded-full text-base font-bold transition-all duration-300 shadow-sm hover:shadow-md border border-transparent hover:border-blue-100 flex items-center gap-1"
                 onClick={() => onNavigate('categories')}
               >
                 Categories
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               
               {/* Dropdown Menu */}
-              <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden">
+              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
                 <div className="py-2">
                   <button 
                      onClick={() => handleCategoryClick('All')}
-                     className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                     className="block w-full text-left px-6 py-3 text-base font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border-l-4 border-transparent hover:border-blue-600"
                   >
                     All Products
                   </button>
@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
                     <button 
                       key={cat}
                       onClick={() => handleCategoryClick(cat)}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      className="block w-full text-left px-6 py-3 text-base font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border-l-4 border-transparent hover:border-blue-600"
                     >
                       {cat}
                     </button>
@@ -103,46 +103,46 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
           </div>
 
           {/* Right Side - Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
              {/* User Panel Icon */}
              <button 
               onClick={() => onNavigate('orders')}
-              className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
+              className="p-3 text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-all"
               title="My Orders"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </button>
 
             {/* Cart Icon */}
             <button 
               onClick={() => setIsOpen(true)}
-              className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors group"
+              className="relative p-3 text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-all group"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
               {itemCount > 0 && (
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-blue-600 rounded-full shadow-md">
+                <span className="absolute top-1 right-1 inline-flex items-center justify-center w-5 h-5 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-500 rounded-full shadow-md border-2 border-white">
                   {itemCount}
                 </span>
               )}
             </button>
 
-            {/* Admin Icon */}
+            {/* Admin Icon (Desktop) */}
             <button 
               onClick={() => onNavigate('admin')}
-              className="hidden md:block px-3 py-1 text-xs font-semibold text-gray-500 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+              className="hidden md:block px-4 py-2 text-sm font-bold text-gray-600 border-2 border-gray-200 rounded-full hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all"
               title="Admin Panel"
             >
               Admin
             </button>
 
              {/* Mobile Menu Button */}
-             <div className="md:hidden">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-600 hover:text-blue-600">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <div className="lg:hidden">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700 hover:text-blue-600 p-2">
+                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {isMenuOpen ? (
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   ) : (
@@ -157,8 +157,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-1 shadow-lg max-h-[80vh] overflow-y-auto">
-          <div className="flex flex-col space-y-2">
+        <div className="lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-2 shadow-xl max-h-[80vh] overflow-y-auto">
+          <div className="flex flex-col space-y-2 mt-2">
             <NavLink page="home" label="Home" />
             <NavLink page="shop" label="Shop" />
             
@@ -166,18 +166,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
             <div className="space-y-1">
               <button 
                 onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-                className="w-full text-left text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors flex justify-between items-center"
+                className="w-full text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-5 py-3 rounded-full text-base font-bold transition-all flex justify-between items-center"
               >
                 Categories
-                <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transform transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 transform transition-transform ${isCategoryDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {isCategoryDropdownOpen && (
-                <div className="pl-6 space-y-1 border-l-2 border-gray-100 ml-3">
+                <div className="pl-4 space-y-1 mt-1">
                   <button 
                      onClick={() => handleCategoryClick('All')}
-                     className="block w-full text-left px-3 py-2 text-sm text-gray-500 hover:text-blue-600 rounded-md"
+                     className="block w-full text-left px-5 py-3 text-base font-semibold text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
                   >
                     All Products
                   </button>
@@ -185,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
                     <button 
                       key={cat}
                       onClick={() => handleCategoryClick(cat)}
-                      className="block w-full text-left px-3 py-2 text-sm text-gray-500 hover:text-blue-600 rounded-md"
+                      className="block w-full text-left px-5 py-3 text-base font-semibold text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
                     >
                       {cat}
                     </button>
@@ -201,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, onSelectCategory }) 
                  onNavigate('admin');
                  setIsMenuOpen(false);
                }}
-               className="text-left text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+               className="text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-5 py-3 rounded-full text-base font-bold transition-all"
             >
               Admin Panel
             </button>

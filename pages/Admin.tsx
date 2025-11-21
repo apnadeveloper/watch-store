@@ -4,6 +4,12 @@ import { getOrders, updateOrderStatus, getProducts, addProduct, updateProduct, d
 import { Order, OrderStatus, Product, Category } from '../types';
 
 export const AdminPage: React.FC = () => {
+  // --- AUTH STATE ---
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loginForm, setLoginForm] = useState({ username: '', password: '' });
+  const [loginError, setLoginError] = useState('');
+
+  // --- ADMIN PANEL STATE ---
   const [activeTab, setActiveTab] = useState<'dashboard' | 'orders' | 'products' | 'categories'>('dashboard');
   const [loading, setLoading] = useState(true);
 
@@ -26,23 +32,25 @@ export const AdminPage: React.FC = () => {
   const [newCategory, setNewCategory] = useState('');
 
   useEffect(() => {
-    fetchData();
-    // Polling for simulated real-time updates and notifications
-    const interval = setInterval(async () => {
-      const currentOrders = await getOrders();
-      setOrders(prev => {
-        if (currentOrders.length > prev.length && prev.length > 0) {
-          // Simple check: if count increased, assume new order
-          showNotification(`New Order Received! ID: ${currentOrders[0].id}`);
+    if (isAuthenticated) {
+      fetchData();
+      // Polling for simulated real-time updates and notifications
+      const interval = setInterval(async () => {
+        const currentOrders = await getOrders();
+        setOrders(prev => {
+          if (currentOrders.length > prev.length && prev.length > 0) {
+            // Simple check: if count increased, assume new order
+            showNotification(`New Order Received! ID: ${currentOrders[0].id}`);
+          }
+          return currentOrders;
+        });
+        if (activeTab === 'dashboard') {
+           getDashboardStats().then(setStats);
         }
-        return currentOrders;
-      });
-      if (activeTab === 'dashboard') {
-         getDashboardStats().then(setStats);
-      }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [activeTab]);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [activeTab, isAuthenticated]);
 
   const showNotification = (text: string) => {
      const id = Date.now();
@@ -70,6 +78,17 @@ export const AdminPage: React.FC = () => {
       setCategories(data);
     }
     setLoading(false);
+  };
+
+  // --- AUTH HANDLERS ---
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginForm.username === 'admin' && loginForm.password === 'admin123') {
+      setIsAuthenticated(true);
+      setLoginError('');
+    } else {
+      setLoginError('Invalid username or password');
+    }
   };
 
   // --- ORDER HANDLERS ---
@@ -136,6 +155,68 @@ export const AdminPage: React.FC = () => {
     }
   };
 
+  // --- RENDER LOGIN SCREEN IF NOT AUTHENTICATED ---
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200">
+          <div className="flex flex-col items-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center shadow-lg mb-4">
+              <span className="text-white font-black text-3xl">C</span>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">Admin Access</h2>
+            <p className="text-gray-500 text-sm mt-2">Please sign in to continue</p>
+          </div>
+
+          {loginError && (
+            <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg mb-6 text-center border border-red-100 font-medium">
+              {loginError}
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">Username</label>
+              <input 
+                type="text" 
+                value={loginForm.username}
+                onChange={(e) => setLoginForm({...loginForm, username: e.target.value})}
+                className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-shadow focus:shadow-md"
+                placeholder="Enter username"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">Password</label>
+              <input 
+                type="password" 
+                value={loginForm.password}
+                onChange={(e) => setLoginForm({...loginForm, password: e.target.value})}
+                className="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-shadow focus:shadow-md"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            
+            <div className="bg-blue-50 p-3 rounded-lg text-xs text-blue-800 border border-blue-100">
+               <strong>Demo Credentials:</strong><br/>
+               Username: admin<br/>
+               Password: admin123
+            </div>
+
+            <button 
+              type="submit" 
+              className="w-full text-white bg-gray-900 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-3.5 text-center transition-all duration-300 shadow-lg"
+            >
+              Sign In to Dashboard
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  // --- RENDER DASHBOARD IF AUTHENTICATED ---
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex flex-col md:flex-row">
       
@@ -178,8 +259,12 @@ export const AdminPage: React.FC = () => {
                </button>
             ))}
          </div>
-         <div className="p-4 border-t border-slate-800 text-center text-xs text-slate-500">
-            v2.0.0 &bull; Secure Connection
+         <div className="p-4 border-t border-slate-800 flex justify-between items-center">
+            <span className="text-xs text-slate-500">v2.0.0</span>
+            <button onClick={() => setIsAuthenticated(false)} className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+              Logout
+            </button>
          </div>
       </div>
 

@@ -11,7 +11,8 @@ export const PRODUCTS: Product[] = [
     image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80',
     description: 'The ultimate rugged watch for adventure with titanium case.',
     features: ['49mm Titanium Case', '100m Water Resistance', '36h Battery'],
-    isTrending: true
+    isTrending: true,
+    isFeatured: true
   },
   {
     id: '2',
@@ -42,7 +43,8 @@ export const PRODUCTS: Product[] = [
     category: Category.HYBRID,
     image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
     description: 'Classic style meets modern smarts. Real hands, hidden display.',
-    features: ['30-day Battery', 'Real Mechanical Hands', 'E-Ink Display']
+    features: ['30-day Battery', 'Real Mechanical Hands', 'E-Ink Display'],
+    isFeatured: true
   },
   {
     id: '5',
@@ -61,7 +63,7 @@ export const PRODUCTS: Product[] = [
     price: 89,
     discount: 0,
     category: Category.ACCESSORY,
-    image: 'https://images.unsplash.com/photo-1559563362-c667ba5f5480?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800&q=80',
     description: 'Handcrafted leather strap compatible with all Chronos watches.',
     features: ['Genuine Leather', 'Magnetic Clasp', 'Sweat Resistant']
   },
@@ -74,7 +76,8 @@ export const PRODUCTS: Product[] = [
     image: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=800&q=80',
     description: 'Rugged and capable, perfect for the outdoors.',
     features: ['Woven Textile', 'G-Hook', 'Orange Accent'],
-    isTrending: true
+    isTrending: true,
+    isFeatured: true
   },
   {
     id: '8',
@@ -85,6 +88,110 @@ export const PRODUCTS: Product[] = [
     image: 'https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=800&q=80',
     description: 'Professional grade diving smartwatch.',
     features: ['300m Depth Rating', 'Dive Computer', 'Sapphire Lens']
+  },
+  // --- NEW PRODUCTS ADDED FOR LAYOUT ---
+  {
+    id: '9',
+    name: 'Chronos Series 9 Steel',
+    price: 699,
+    discount: 0,
+    category: Category.APPLE,
+    image: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?auto=format&fit=crop&w=800&q=80',
+    description: 'Stainless steel finish with sapphire crystal display.',
+    features: ['Steel Case', 'Cellular', 'Fast Charge'],
+    isFeatured: true
+  },
+  {
+    id: '10',
+    name: 'Chronos Sport Loop',
+    price: 49,
+    discount: 0,
+    category: Category.ACCESSORY,
+    image: 'https://images.unsplash.com/photo-1510017098667-27dfc7150acb?auto=format&fit=crop&w=800&q=80',
+    description: 'Soft, breathable nylon weave with an easily adjustable hook-and-loop fastener.',
+    features: ['Nylon Weave', 'Breathable', 'Lightweight']
+  },
+  {
+    id: '11',
+    name: 'Galaxy Watch Classic',
+    price: 399,
+    discount: 10,
+    category: Category.ANDROID,
+    image: 'https://images.unsplash.com/photo-1517420879524-86d64ac2f339?auto=format&fit=crop&w=800&q=80',
+    description: 'The rotating bezel is back. Classic design, modern tech.',
+    features: ['Rotating Bezel', 'Wear OS', 'Sleep Tracking']
+  },
+  {
+    id: '12',
+    name: 'Vintage Hybrid',
+    price: 199,
+    discount: 0,
+    category: Category.HYBRID,
+    image: 'https://images.unsplash.com/photo-1495857000853-fe46c8aefc30?auto=format&fit=crop&w=800&q=80',
+    description: 'Looks like a traditional watch, acts like a smartwatch.',
+    features: ['6-month Battery', 'Notifications', 'Step Tracking']
+  },
+  {
+    id: '13',
+    name: 'Titanium Link Bracelet',
+    price: 349,
+    discount: 0,
+    category: Category.ACCESSORY,
+    image: 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&w=800&q=80',
+    description: 'Crafted from the same titanium alloy as the case.',
+    features: ['Titanium', 'Butterfly Closure', 'Diamond-like Carbon']
+  },
+  {
+    id: '14',
+    name: 'Active Pro 5',
+    price: 299,
+    discount: 5,
+    category: Category.ANDROID,
+    image: 'https://images.unsplash.com/photo-1557431177-36141475cdd9?auto=format&fit=crop&w=800&q=80',
+    description: 'Advanced fitness tracking for the dedicated athlete.',
+    features: ['GPS', 'VO2 Max', 'Recovery Time'],
+    isTrending: true
+  },
+  {
+    id: '15',
+    name: 'Minimalist Hybrid',
+    price: 179,
+    discount: 0,
+    category: Category.HYBRID,
+    image: 'https://images.unsplash.com/photo-1619161353293-bd323724d681?auto=format&fit=crop&w=800&q=80',
+    description: 'A slim, minimal watch that tracks your activity silently.',
+    features: ['Slim Profile', 'Activity Tracking', 'Silent Alarm']
+  },
+  {
+    id: '16',
+    name: 'Chronos Ultra Orange',
+    price: 799,
+    discount: 0,
+    category: Category.APPLE,
+    image: 'https://images.unsplash.com/photo-1461141346587-763ab02bced9?auto=format&fit=crop&w=800&q=80',
+    description: 'The Ultra watch with the signature international orange action button.',
+    features: ['Action Button', 'Siren', 'Precision Start']
+  },
+  {
+    id: '17',
+    name: 'Heritage Hybrid',
+    price: 259,
+    discount: 15,
+    category: Category.HYBRID,
+    image: 'https://images.unsplash.com/photo-1508057198894-247b6d788d93?auto=format&fit=crop&w=800&q=80',
+    description: 'Timeless design inspired by aviation instruments.',
+    features: ['World Time', 'Chronograph', 'Leather Strap'],
+    isFeatured: true
+  },
+  {
+    id: '18',
+    name: 'Sport Silicone Band',
+    price: 29,
+    discount: 0,
+    category: Category.ACCESSORY,
+    image: 'https://images.unsplash.com/photo-1608677503993-6681034da00c?auto=format&fit=crop&w=800&q=80',
+    description: 'Made from a custom high-performance fluoroelastomer.',
+    features: ['Waterproof', 'Durable', 'Pin-and-tuck']
   }
 ];
 
@@ -109,6 +216,20 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Designer',
     text: "Finally, a smartwatch that actually looks good with formal wear. The Hybrid X is a masterpiece.",
     avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704c'
+  },
+  {
+    id: 't4',
+    name: 'David Miller',
+    role: 'Adventure Guide',
+    text: "Navigation features are spot on. I take this on every hike and it has never let me down.",
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704e'
+  },
+  {
+    id: 't5',
+    name: 'Lisa Wong',
+    role: 'Corporate Executive',
+    text: "Seamless notifications and calls allow me to stay connected without being glued to my phone.",
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704f'
   }
 ];
 
@@ -131,7 +252,7 @@ export const BANNERS: Banner[] = [
     id: 'b3',
     title: 'Sale Event',
     subtitle: 'Up to 30% off selected items',
-    image: 'https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80',
     link: 'shop'
   }
 ];

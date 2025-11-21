@@ -11,9 +11,10 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // --- INIT ---
 const initDB = () => {
-  if (!localStorage.getItem(PRODUCTS_KEY)) {
-    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(PRODUCTS));
-  }
+  // FORCE UPDATE: We now overwrite the products key on every load to ensure the image fixes 
+  // in constants.ts are reflected immediately for the user.
+  localStorage.setItem(PRODUCTS_KEY, JSON.stringify(PRODUCTS));
+  
   if (!localStorage.getItem(CATEGORIES_KEY)) {
     // Extract unique categories from initial products
     const cats = Array.from(new Set(PRODUCTS.map(p => p.category)));
